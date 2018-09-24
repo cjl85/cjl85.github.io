@@ -1,5 +1,6 @@
 RULES
 
+
 BlackJack is a card game that puts the player against the dealer. 
 
 The player makes a bet to start the game. 
@@ -15,7 +16,9 @@ If player's total value of cards is greater than dealer's, Player wins that roun
 Vice Versa. Dealer win that round.
 
 
+
 ORDER
+
 
 The player is always first to act against the dealer.
 
