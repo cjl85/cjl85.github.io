@@ -13,7 +13,7 @@ Going over 21 is considered to be a BUST and an automatic loss and the next roun
 
 If player's total value of cards is greater than dealer's, Player wins that round. 
 
-Vice Versa. Dealer win that round.
+Vice Versa. Dealer wins that round.
 
 
 
