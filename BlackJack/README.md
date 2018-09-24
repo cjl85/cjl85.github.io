@@ -22,7 +22,7 @@ ORDER
 
 The player is always first to act against the dealer.
 
-Player has to decide whether to HIT (Add one card to your hand) or to STAY.
+Player has to decide whether to HIT (Add one extra card to your hand) or to STAY.
 
 The player can continue HITTING until they want to STAY. 
 
