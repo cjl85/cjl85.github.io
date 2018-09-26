@@ -8,49 +8,49 @@ $(() => {
   }
 
   const suit = () => {
-      card.getSuit = () => {
-        let = suitName = ' ';
+      this.getSuit = () => {
+        let = nameOfSuit = ' ';
         switch (suit) {
           case 1:
-            suitName = 'Diamonds';
+            nameOfSuit = 'Diamonds';
             break;
           case 2:
-            suitName = 'Hearts';
+            nameOfSuit = 'Hearts';
             break;
           case 3:
-            suitName = 'Spades';
+            nameOfSuit = 'Spades';
             break;
           case 4:
-            suitName = 'Clubs';
+            nameOfSuit = 'Clubs';
             break;
       }
-      return suitName;
+      return nameOfSuit;
     }
   }
 
   const symbol = () => {
-    card.getSymbol = () => {
-      let = suitName = ' ';
+    this.getSymbol = () => {
+      let = nameOfSuit = ' ';
       switch (suit) {
         case 1:
-          suitName = '&diams;';
+          nameOfSuit = '&diams;';
           break;
         case 2:
-          suitName = '&hearts;';
+          nameOfSuit = '&hearts;';
           break;
         case 3:
-          suitName = '&spades;';
+          nameOfSuit = '&spades;';
           break;
         case 4:
-          suitName = '&clubs;';
+          nameOfSuit = '&clubs;';
           break;
         }
-      return suitName;
+      return nameOfSuit;
       }
     }
 
     const values = () => {
-      card.getValue = () => {
+      this.getValue = () => {
         let value = number;
           if(number >= 10) {
             value = 10;
@@ -65,23 +65,23 @@ $(() => {
     const name = () => {
       let cardName = ' ';
       switch (number){
-    case 1:
-        cardName = "A";
-        break;
-    case 13:
-        cardName = "K";
-        break;
-    case 12:
-       cardName = "Q";
-        break;
-    case 11:
-        cardName = "J";
-        break;
-    default:
-        cardName = number;
-        break;
+        case 1:
+          cardName = "A";
+          break;
+        case 13:
+          cardName = "K";
+          break;
+        case 12:
+          cardName = "Q";
+          break;
+        case 11:
+          cardName = "J";
+          break;
+        default:
+          cardName = number;
+          break;
       }
-    return cardName+card.getSymbol();
+    return cardName+this.getSymbol();
     }
 
 
@@ -100,7 +100,7 @@ $(() => {
     }
 
     const shuffle = () => {
-      for (let j, x, i = cards.length; i; j = parseInt(Math.random() * i), x = cards[--i], cards[i] = cards[j], cards[j] = x);
+      for (let j, x, i = cards.length;);
         return this.getCards();
       }
 
@@ -117,4 +117,5 @@ $(() => {
     $stand.on('click', () => {
       console.log('ma');
     })
+  values();
 });
