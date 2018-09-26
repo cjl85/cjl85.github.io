@@ -1,3 +1,5 @@
+console.log('hi');
+$(() => {
 const $BlackJack = () => {
 
 class Deck {
@@ -35,28 +37,49 @@ const shuffle = (deck1) => {
   //   console.log('hi');
   // }
 
-const box = $('.box')
-
-  for (let i = 0; i < box.length; i++) {
-
-
-  const $box = $(box[i]);
-  $box.on('click', event)
-  }
-
-const bet = () => {
-  console.log('hi');
+const deal = (event) => {
+  console.log('deal');
 }
 
-const circle = $('.circle')
-    for (let i = 0; i < circle.length; i++) {
+const boxes = $('.box')
+  let count = boxes.length;
+    while(count--){
+      const $box = $(boxes[count]);
+      $box.on('click', deal)
+      }
 
-    const $circle = $(circle[i]);
-    $('footer').append(circle)
-    $circle.on('click', bet);
+const bet = () => {
+  let betAmount = $(['.chip1', '.chip2', '.chip3'])
+    let chipArr = betAmount.length;
+    console.log('hi');
+      while(chipArr--) {
+        switch(betAmount) {
+          case $('.chip1'):
+            console.log(5);
+            break;
+          case $('.chip2'):
+            console.log(25);
+            break;
+          case $('.chip3'):
+            console.log(100);
+            break;
+    }   
+  }
+}
+// console.log('hi');
+const chips = $(['.chip1', '.chip2', '.chip3'])
+  let count1 = chips.length;
+    while(count1--) {
+
+    const $chip = $(chips[count1]);
+    // $('footer').append($chip)
+    console.log('here', $chip);
+    $chip.on('click', bet);
+    console.log('here', $chip);
     }
-
 };
 
 // shuffle(deck1);
-$BlackJack();
+
+  $BlackJack();
+});
