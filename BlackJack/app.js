@@ -1,85 +1,120 @@
-console.log('hi');
 $(() => {
-const $BlackJack = () => {
+  console.log('hi');
 
-class Deck {
-  constructor() {
-    this.deck = [];
-
-
-    const suits  = ['Diamonds', 'Hearts', 'Clubs', 'Spades'];
-    const values = ['Ace', 2, 3, 4, 5, 6, 7, 8 , 9 , 10, 'Jack', 'Queen', 'King'];
-
-    for (let suit in suits) {
-      for (let value in values) {
-        this.deck.push(`${values[value]} of ${suits[suit]}`);
+  const card = (suit, number) => {
+      this.getNumber = () => {
+        return number;
       }
+  }
+
+  const suit = () => {
+      card.getSuit = () => {
+        let = suitName = ' ';
+        switch (suit) {
+          case 1:
+            suitName = 'Diamonds';
+            break;
+          case 2:
+            suitName = 'Hearts';
+            break;
+          case 3:
+            suitName = 'Spades';
+            break;
+          case 4:
+            suitName = 'Clubs';
+            break;
+      }
+      return suitName;
     }
   }
-}
 
-const deck1 = new Deck();
-console.log(deck1);
+  const symbol = () => {
+    card.getSymbol = () => {
+      let = suitName = ' ';
+      switch (suit) {
+        case 1:
+          suitName = '&diams;';
+          break;
+        case 2:
+          suitName = '&hearts;';
+          break;
+        case 3:
+          suitName = '&spades;';
+          break;
+        case 4:
+          suitName = '&clubs;';
+          break;
+        }
+      return suitName;
+      }
+    }
 
-const shuffle = (deck1) => {
-  let foo = this.length, bar, i;
-    while (foo) {
-    i = Math.floor(Math.random() * foo--);
+    const values = () => {
+      card.getValue = () => {
+        let value = number;
+          if(number >= 10) {
+            value = 10;
+          }
+          else if(number === 1){
+            value = 11;
+          }
+          return value;
+      }
+    }
 
-    let bar = deck1[foo];
-    foo[m] = foo[i];
-    foo[i] = bar;
-  }
-  return deck1;
-}
+    const name = () => {
+      let cardName = ' ';
+      switch (number){
+    case 1:
+        cardName = "A";
+        break;
+    case 13:
+        cardName = "K";
+        break;
+    case 12:
+       cardName = "Q";
+        break;
+    case 11:
+        cardName = "J";
+        break;
+    default:
+        cardName = number;
+        break;
+      }
+    return cardName+card.getSymbol();
+    }
 
-  // const flipCard = (event) => {
-  //   console.log('hi');
-  // }
 
-const deal = (event) => {
-  console.log('deal');
-}
+    const deck = () => {
+      let cards = [];
 
-const boxes = $('.box')
-  let count = boxes.length;
-    while(count--){
-      const $box = $(boxes[count]);
-      $box.on('click', deal)
+      let newCards = () => {
+        let i, suit, number;
+          for (let i = 0; i < 52; i++) {
+              suit = i % 4 + 1;
+              number = i % 13 + 1;
+              cards.push(newCards(suit, number));
+          }
+          newCards();
+      }
+    }
+
+    const shuffle = () => {
+      for (let j, x, i = cards.length; i; j = parseInt(Math.random() * i), x = cards[--i], cards[i] = cards[j], cards[j] = x);
+        return this.getCards();
       }
 
-const bet = () => {
-  let betAmount = $(['.chip1', '.chip2', '.chip3'])
-    let chipArr = betAmount.length;
-    console.log('hi');
-      while(chipArr--) {
-        switch(betAmount) {
-          case $('.chip1'):
-            console.log(5);
-            break;
-          case $('.chip2'):
-            console.log(25);
-            break;
-          case $('.chip3'):
-            console.log(100);
-            break;
-    }   
-  }
-}
-// console.log('hi');
-const chips = $(['.chip1', '.chip2', '.chip3'])
-  let count1 = chips.length;
-    while(count1--) {
+    let $deal  = $('.deal'),
+        $hit   = $('.hit'),
+        $stand = $('.stand');
 
-    const $chip = $(chips[count1]);
-    // $('footer').append($chip)
-    console.log('here', $chip);
-    $chip.on('click', bet);
-    console.log('here', $chip);
-    }
-};
-
-// shuffle(deck1);
-
-  $BlackJack();
+    $deal.on('click', ()=> {
+      console.log('hi');
+    })
+    $hit.on('click', () => {
+      console.log('yo');
+    })
+    $stand.on('click', () => {
+      console.log('ma');
+    })
 });
