@@ -53,10 +53,10 @@ $(() => {
       this.getValue = () => {
         let value = number;
           if(number >= 10) {
-            value = 10;
+            return 10;
           }
           else if(number === 1){
-            value = 11;
+            return 11;
           }
           return value;
       }
@@ -98,11 +98,6 @@ $(() => {
           newCards();
       }
     }
-
-    const shuffle = () => {
-      for (let j, x, i = cards.length;);
-        return this.getCards();
-      }
 
     let $deal  = $('.deal'),
         $hit   = $('.hit'),
