@@ -3,18 +3,19 @@
 }
 
 body {
-  background-color: #339966;
+  background-color: black;
+  background-image: linear-gradient(blue, black);
+  background-repeat: no-repeat;
 }
 
 h1 {
   text-align: center;
   font-family: 'Lobster', Georgia, Times, serif;
   font-size: 5em;
+  color: #e6e6e6;
+  text-shadow: -5px 0 black, 0 5px black, 5px 0 black, 0 -5px black;
 }
 
-/* .container {
-  margin-top: 10px;
-} */
 
 
 .deal  {
@@ -27,7 +28,7 @@ h1 {
   font-size: 15px;
   font-weight: bold;
   margin-top: 10px;
-  margin-left: 600px;
+  margin-left: 645px;
 }
 
 .hit {
@@ -55,18 +56,11 @@ h1 {
 }
 
 .playerhand {
-  border: 1px solid black;
+  background-color: #339966;
+  border: 3px solid black;
   display: flex;
   flex: auto;
   height: 200px;
-  width: auto;
+  width: 50%;
   margin: 0 auto;
 }
-
-/* .total {
-  border: 1px solid black;
-  display: flex;
-  flex: auto;
-  height: 20px;
-  width: auto;
-} */

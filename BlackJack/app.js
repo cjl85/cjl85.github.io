@@ -81,7 +81,7 @@ $(() => {
           cardName = number;
           break;
       }
-    return cardName+this.getSymbol();
+    return cardName + this.getSymbol();
     }
 
 
@@ -112,5 +112,30 @@ $(() => {
     $stand.on('click', () => {
       console.log('ma');
     })
-  values();
+
+  const hand = () => {
+      let cards = [];
+
+      cards.push(deck.deal(), deck.deal());
+
+      this.gethand = () => {
+          return cards;
+      }
+  }
+
+  this.score = () => {
+      let i,
+      score = 0,
+      cardVal = 0,
+      aces = 0;
+
+    for (let i = 0; i < cards.length; i++) {
+        cardVal = cards[i].getValue();
+        if (cardVal === 11) {
+          aces += 1;
+        }
+        score += cardVal;
+    }
+  }
+
 });
