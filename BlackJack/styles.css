@@ -73,3 +73,15 @@ h1 {
   border: 1px solid black;
   border-radius: 5px;
 }
+
+.total {
+  /* background-color: red; */
+  border: 1px solid black;
+  border-radius: 4px;
+  display: inline-block;
+  color: white;
+  padding: 5px 5px;
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 635px;
+}

@@ -2,31 +2,30 @@ $(() => {
   console.log('hi');
 
   const card = (suit, number) => {
-      this.getNumber = () => {
-        return number;
+      let suitName = suit,
+          cardName = number;
       }
-  }
+
 
   const symbol = () => {
-    this.getSymbol = () => {
-      let = nameOfSuit = ' ';
+      let = suitName = ' ';
       switch (suit) {
         case 1:
-          nameOfSuit = '&diams;';
+          suitName = '&diams;';
           break;
         case 2:
-          nameOfSuit = '&hearts;';
+          suitName = '&hearts;';
           break;
         case 3:
-          nameOfSuit = '&spades;';
+          suitName = '&spades;';
           break;
         case 4:
-          nameOfSuit = '&clubs;';
+          suitName = '&clubs;';
           break;
         }
-      return nameOfSuit;
+      return suitName;
       }
-    }
+
 
     const name = () => {
       let cardName = ' ';
@@ -47,12 +46,11 @@ $(() => {
         cardName = number;
         break;
       }
-      return cardName + this.getSymbol();
+      return cardName;
     }
 
 
     const values = () => {
-      this.getValue = () => {
         let value = number;
           if(number >= 10) {
             return 10;
@@ -62,7 +60,7 @@ $(() => {
           }
           return value;
       }
-    }
+
 
 
     const deck = () => {
@@ -84,12 +82,7 @@ $(() => {
       }
     }
 
-
-
-
-
-
-  const hand = (deck) => {
+    const hand = (deck) => {
       let playerHand = [];
 
       this.push(deck.deal(), deck.deal());
@@ -99,7 +92,7 @@ $(() => {
       }
   }
 
-  const score = () => {
+    const score = () => {
       let i, x;
       let sum = 0;
       let aces = 0;
