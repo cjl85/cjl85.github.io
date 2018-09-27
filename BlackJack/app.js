@@ -7,26 +7,26 @@ $(() => {
       }
   }
 
-  const suit = () => {
-      this.getSuit = () => {
-        let = nameOfSuit = ' ';
-        switch (suit) {
-          case 1:
-            nameOfSuit = 'Diamonds';
-            break;
-          case 2:
-            nameOfSuit = 'Hearts';
-            break;
-          case 3:
-            nameOfSuit = 'Spades';
-            break;
-          case 4:
-            nameOfSuit = 'Clubs';
-            break;
-      }
-      return nameOfSuit;
-    }
-  }
+  // const suit = () => {
+  //     this.getSuit = () => {
+  //       let = nameOfSuit = ' ';
+  //       switch (suit) {
+  //         case 1:
+  //           nameOfSuit = 'Diamonds';
+  //           break;
+  //         case 2:
+  //           nameOfSuit = 'Hearts';
+  //           break;
+  //         case 3:
+  //           nameOfSuit = 'Spades';
+  //           break;
+  //         case 4:
+  //           nameOfSuit = 'Clubs';
+  //           break;
+  //     }
+  //     return nameOfSuit;
+  //   }
+  // }
 
   const symbol = () => {
     this.getSymbol = () => {
@@ -49,6 +49,29 @@ $(() => {
       }
     }
 
+    const name = () => {
+      let cardName = ' ';
+      switch (number){
+        case 1:
+        cardName = "A";
+        break;
+        case 13:
+        cardName = "K";
+        break;
+        case 12:
+        cardName = "Q";
+        break;
+        case 11:
+        cardName = "J";
+        break;
+        default:
+        cardName = number;
+        break;
+      }
+      return cardName + this.getSymbol();
+    }
+
+
     const values = () => {
       this.getValue = () => {
         let value = number;
@@ -62,80 +85,100 @@ $(() => {
       }
     }
 
-    const name = () => {
-      let cardName = ' ';
-      switch (number){
-        case 1:
-          cardName = "A";
-          break;
-        case 13:
-          cardName = "K";
-          break;
-        case 12:
-          cardName = "Q";
-          break;
-        case 11:
-          cardName = "J";
-          break;
-        default:
-          cardName = number;
-          break;
-      }
-    return cardName + this.getSymbol();
-    }
-
 
     const deck = () => {
-      let cards = [];
+      let decks = [];
 
-      let newCards = () => {
-        let i, suit, number;
-          for (let i = 0; i < 52; i++) {
-              suit = i % 4 + 1;
-              number = i % 13 + 1;
-              cards.push(newCards(suit, number));
-          }
-          newCards();
+      for (let i = 0; i <= 52; i++) {
+          decks.push(i);
+      }
+      this.shuffle = () => {
+        let i, j, x;
+
+        for (i = decks.length - 1; i > 0; i--) {
+            j = Math.floor(Math.random() * i);
+
+            x = decks[i];
+            decks[i] = decks[j];
+            decks[j] = x;
+        }
       }
     }
 
-    let $deal  = $('.deal'),
-        $hit   = $('.hit'),
-        $stand = $('.stand');
 
-    $deal.on('click', ()=> {
-      console.log('hi');
-    })
-    $hit.on('click', () => {
-      console.log('yo');
-    })
-    $stand.on('click', () => {
-      console.log('ma');
-    })
 
-  const hand = () => {
-      let cards = [];
 
-      cards.push(deck.deal(), deck.deal());
+
+
+  const hand = (deck) => {
+      let playerHand = [];
+
+      this.push(deck.deal(), deck.deal());
 
       this.gethand = () => {
-          return cards;
+          return playerHand;
       }
   }
 
-  this.score = () => {
-      let i,
-      score = 0,
-      cardVal = 0,
-      aces = 0;
+  const score = () => {
+      let i, x;
+      let sum = 0;
+      let aces = 0;
+      for (let i = 0; i < playerHand.length; i++) {
+          x = playerHand[i].getValue();
+          if (x === 11) {
+              aces++;
+              sum++;
+          }
+          else { sum += x;}
+      }
+      while (sum < 21 && aces > 0) {
+          if (sum + 10 <= 21) {
+              sum += 10;
+              aces--;
+          }
+          return sum;
+      }
 
-    for (let i = 0; i < cards.length; i++) {
-        cardVal = cards[i].getValue();
-        if (cardVal === 11) {
-          aces += 1;
-        }
-        score += cardVal;
-    }
+      const printHand = () => {
+          let output = [];
+          for (let i = 0; i < playerHand.length; i++) {
+            output.push(playerHand[i].getValue() + "of" + playerHand[i].getSymbol());
+          }
+      }
   }
+
+
+  let $deal  = $('.deal'),
+      $hit   = $('.hit'),
+      $stand = $('.stand');
+
+
+
+  $deal.on('click', ()=> {
+    console.log('what');
+  })
+  $hit.on('click', () => {
+    console.log('yo');
+  })
+  $stand.on('click', () => {
+    console.log('ma');
+  })
+
+  let showDeal = () => {
+      $hit.hide();
+      $stand.hide();
+      $deal.show();
+  }
+
+  let showHitStay = () => {
+      $hit.show();
+      $stand.show();
+      $deal.hide();
+  }
+// showDeal();
+
+$('.playercards').append('\u2661');
+console.log($('.playercards'));
 
 });
