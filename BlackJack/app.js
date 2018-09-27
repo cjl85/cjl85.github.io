@@ -1,86 +1,32 @@
 $(() => {
   console.log('hi');
 
-  const card = (suit, number) => {
-      let suitName = suit,
-          cardName = number;
-      }
+  class Deck {
+    constructor() {
+      this.deck = [];
 
+      const suits = ['♦','♣','♥','♠'];
+      const values = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'];
 
-  const symbol = () => {
-      let = suitName = ' ';
-      switch (suit) {
-        case 1:
-          suitName = '&diams;';
-          break;
-        case 2:
-          suitName = '&hearts;';
-          break;
-        case 3:
-          suitName = '&spades;';
-          break;
-        case 4:
-          suitName = '&clubs;';
-          break;
-        }
-      return suitName;
-      }
-
-
-    const name = () => {
-      let cardName = ' ';
-      switch (number){
-        case 1:
-        cardName = "A";
-        break;
-        case 13:
-        cardName = "K";
-        break;
-        case 12:
-        cardName = "Q";
-        break;
-        case 11:
-        cardName = "J";
-        break;
-        default:
-        cardName = number;
-        break;
-      }
-      return cardName;
-    }
-
-
-    const values = () => {
-        let value = number;
-          if(number >= 10) {
-            return 10;
-          }
-          else if(number === 1){
-            return 11;
-          }
-          return value;
-      }
-
-
-
-    const deck = () => {
-      let decks = [];
-
-      for (let i = 0; i <= 52; i++) {
-          decks.push(i);
-      }
-      this.shuffle = () => {
-        let i, j, x;
-
-        for (i = decks.length - 1; i > 0; i--) {
-            j = Math.floor(Math.random() * i);
-
-            x = decks[i];
-            decks[i] = decks[j];
-            decks[j] = x;
+      for (let suit in suits) {
+        for (let value in values) {
+          this.deck.push(`${values[value]} of ${suits[suit]}`);
         }
       }
     }
+  }
+  const deck1 = new Deck();
+  console.log(deck1.deck);
+
+
+  // const shuffle = () => {
+  //
+  //   }
+  // }
+
+// deck1.deck.shuffle();
+
+
 
     const hand = (deck) => {
       let playerHand = [];
@@ -115,7 +61,7 @@ $(() => {
       const printHand = () => {
           let output = [];
           for (let i = 0; i < playerHand.length; i++) {
-            output.push(playerHand[i].getValue() + "of" + playerHand[i].getSymbol());
+            output.push(playerHand[i].value() + "of" + playerHand[i].getSymbol());
           }
       }
   }
@@ -159,19 +105,19 @@ $(() => {
 // Defined variables for each playercard Class
 // Appended each symbol
 
-const $heart = $('.playercards').append('\u2661').css('color', 'red');
-console.log($('.playercards'));
-const $spade = $('.playercards').append('\u2664')
-console.log($('.playercards'));
-const $diamond = $('.playercards').append('\u2662');
-console.log($('.playercards'));
-const $clubs = $('.playercards').append('\u2667');
-console.log($($clubs));
-
-$heart.css('visibility', 'hidden');
-$spade.css('visibility', 'hidden');
-$diamond.css('visibility', 'hidden');
-$clubs.css('visibility', 'hidden');
+// const $heart = $('.playercards').append('\u2661').css('color', 'red');
+// console.log($('.playercards'));
+// const $spade = $('.playercards').append('\u2664')
+// console.log($('.playercards'));
+// const $diamond = $('.playercards').append('\u2662');
+// console.log($('.playercards'));
+// const $clubs = $('.playercards').append('\u2667');
+// console.log($($clubs));
+//
+// $heart.css('visibility', 'hidden');
+// $spade.css('visibility', 'hidden');
+// $diamond.css('visibility', 'hidden');
+// $clubs.css('visibility', 'hidden');
 
 
 
