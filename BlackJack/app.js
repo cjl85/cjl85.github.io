@@ -128,7 +128,7 @@ $(() => {
 
 
   $deal.on('click', () => {
-      $('.playercards').css('visibility', 'visible');
+      $('.playercards:nth-child(-n+2)').css('visibility', 'visible');
   })
   $hit.on('click', () => {
     console.log('yo');
