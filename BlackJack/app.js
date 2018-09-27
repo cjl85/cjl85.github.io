@@ -131,7 +131,8 @@ $(() => {
       $('.playercards:nth-child(-n+2)').css('visibility', 'visible');
   })
   $hit.on('click', () => {
-    console.log('yo');
+      $('.playercards:nth-child(3)').css('visibility', 'visible');
+
   })
   $stand.on('click', () => {
     console.log('ma');
@@ -155,15 +156,16 @@ $(() => {
   //     });
   // });
 
+// Defined variables for each playercard Class
+// Appended each symbol
 
-
-$heart = $('.playercards').append('\u2661').css('color', 'red');
+const $heart = $('.playercards').append('\u2661').css('color', 'red');
 console.log($('.playercards'));
-$spade = $('.playercards').append('\u2664')
+const $spade = $('.playercards').append('\u2664')
 console.log($('.playercards'));
-$diamond = $('.playercards').append('\u2662');
+const $diamond = $('.playercards').append('\u2662');
 console.log($('.playercards'));
-$clubs = $('.playercards').append('\u2667');
+const $clubs = $('.playercards').append('\u2667');
 console.log($($clubs));
 
 $heart.css('visibility', 'hidden');
