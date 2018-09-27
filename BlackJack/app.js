@@ -4,6 +4,7 @@ $(() => {
   class Deck {
     constructor() {
       this.deck = [];
+      this.drawnCards = [];
 
       const suits = ['♦','♣','♥','♠'];
       const values = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'];
@@ -14,59 +15,97 @@ $(() => {
         }
       }
     }
-  }
-  const deck1 = new Deck();
-  console.log(deck1.deck);
+    printDeck () {
+        if(!this.deck.length){
+          console.log('Need new deck');
+        } else {
+          for (let i = 0; i < this.deck.length; i++) {
+              console.log(this.deck[i]);
+          }
+        }
+      }
+      shuffle() {
+        const deck = this.deck;
+        let m = deck.length, i;
+
+        while(m){
+          i = Math.floor(Math.random() * m--);
+
+          [deck[m], deck[i]] = [deck[i], deck[m]];
+        }
+
+        return this;
+      }
+      deal () {
+        let cards = [],
+                m = Array.length;
+
+        for (let i = 0; i < m; i++) {
+              let drawnCard = this.deck.shift()
+              cards.push(drawnCard)
+              this.drawnCards.push(drawnCard)
+        }
+        return this.drawnCards
+      }
+    }
+
+      const deck1 = new Deck();
+        console.log(deck1.deck);
+      // deck1.shuffle()
+        console.log(deck1.deck);
+
+        // deck1.printDeck();
+        deck1.shuffle();
+        deck1.deal();
+        console.log(deck1.deal());
+
+        $('.playercards').css('visibility', 'hidden');
+        
+  });
 
 
-  // const shuffle = () => {
+
+
+
+  //   const hand = (deck) => {
+  //     let playerHand = [];
   //
-  //   }
+  //     this.push(deck.deal(), deck.deal());
+  //
+  //     this.gethand = () => {
+  //         return playerHand;
+  //     }
   // }
-
-// deck1.deck.shuffle();
-
-
-
-    const hand = (deck) => {
-      let playerHand = [];
-
-      this.push(deck.deal(), deck.deal());
-
-      this.gethand = () => {
-          return playerHand;
-      }
-  }
-
-    const score = () => {
-      let i, x;
-      let sum = 0;
-      let aces = 0;
-      for (let i = 0; i < playerHand.length; i++) {
-          x = playerHand[i].getValue();
-          if (x === 11) {
-              aces++;
-              sum++;
-          }
-          else { sum += x;}
-      }
-      while (sum < 21 && aces > 0) {
-          if (sum + 10 <= 21) {
-              sum += 10;
-              aces--;
-          }
-          return sum;
-      }
-
-      const printHand = () => {
-          let output = [];
-          for (let i = 0; i < playerHand.length; i++) {
-            output.push(playerHand[i].value() + "of" + playerHand[i].getSymbol());
-          }
-      }
-  }
-
-
+  //
+  //   const score = () => {
+  //     let i, x;
+  //     let sum = 0;
+  //     let aces = 0;
+  //     for (let i = 0; i < playerHand.length; i++) {
+  //         x = playerHand[i].getValue();
+  //         if (x === 11) {
+  //             aces++;
+  //             sum++;
+  //         }
+  //         else { sum += x;}
+  //     }
+  //     while (sum < 21 && aces > 0) {
+  //         if (sum + 10 <= 21) {
+  //             sum += 10;
+  //             aces--;
+  //         }
+  //         return sum;
+  //     }
+  //
+  //     const printHand = () => {
+  //         let output = [];
+  //         for (let i = 0; i < playerHand.length; i++) {
+  //           output.push(playerHand[i].value() + "of" + playerHand[i].getSymbol());
+  //         }
+  //     }
+  // }
+  //
+  //
   let $deal  = $('.deal'),
       $hit   = $('.hit'),
       $stand = $('.stand');
@@ -136,7 +175,3 @@ $(() => {
 //      $("#losses").text(losses);
 //  };
 //  updateUI();
-
-
-
-});
