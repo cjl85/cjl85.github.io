@@ -55,7 +55,7 @@ h1 {
   margin-left: 5px;
 }
 
-.playerhand {
+.gamebox {
   background-color: #339966;
   border: 3px solid black;
   display: flex;
@@ -67,7 +67,7 @@ h1 {
 
 .playercards {
   margin-top: 48px;
-  width: 125px;
+  width: 115px;
   height: 150px;
   background: #e6e6e6;
   border: 1px solid black;

@@ -7,27 +7,6 @@ $(() => {
       }
   }
 
-  // const suit = () => {
-  //     this.getSuit = () => {
-  //       let = nameOfSuit = ' ';
-  //       switch (suit) {
-  //         case 1:
-  //           nameOfSuit = 'Diamonds';
-  //           break;
-  //         case 2:
-  //           nameOfSuit = 'Hearts';
-  //           break;
-  //         case 3:
-  //           nameOfSuit = 'Spades';
-  //           break;
-  //         case 4:
-  //           nameOfSuit = 'Clubs';
-  //           break;
-  //     }
-  //     return nameOfSuit;
-  //   }
-  // }
-
   const symbol = () => {
     this.getSymbol = () => {
       let = nameOfSuit = ' ';
@@ -155,8 +134,8 @@ $(() => {
 
 
 
-  $deal.on('click', ()=> {
-    console.log('what');
+  $deal.on('click', () => {
+
   })
   $hit.on('click', () => {
     console.log('yo');
@@ -165,20 +144,35 @@ $(() => {
     console.log('ma');
   })
 
-  let showDeal = () => {
-      $hit.hide();
-      $stand.hide();
-      $deal.show();
-  }
+  // let showDeal = () => {
+  //     $hit.hide();
+  //     $stand.hide();
+  //     $deal.show();
+  // }
+  //
+  // let showHitStay = () => {
+  //     $hit.show();
+  //     $stand.show();
+  //     $deal.hide();
+  // }
 
-  let showHitStay = () => {
-      $hit.show();
-      $stand.show();
-      $deal.hide();
-  }
-// showDeal();
+  // $(document).ready = () => {
+  //       $deal.on('click') =>{
+  //         $deal.show();
+  //     });
+  // });
 
-$('.playercards').append('\u2661');
+
+
+$('.playercards').append('\u2661').css('color', 'red');
 console.log($('.playercards'));
+$('.playercards').append('\u2664')
+console.log($('.playercards'));
+$('.playercards').append('\u2662');
+console.log($('.playercards'));
+$('.playercards').append('\u2667');
+console.log($('.playercards'));
+
+
 
 });
