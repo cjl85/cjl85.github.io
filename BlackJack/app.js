@@ -128,7 +128,7 @@ $(() => {
 
 
   $deal.on('click', () => {
-
+      $('.playercards').css('visibility', 'visible');
   })
   $hit.on('click', () => {
     console.log('yo');
@@ -157,14 +157,37 @@ $(() => {
 
 
 
-$('.playercards').append('\u2661').css('color', 'red');
+$heart = $('.playercards').append('\u2661').css('color', 'red');
 console.log($('.playercards'));
-$('.playercards').append('\u2664')
+$spade = $('.playercards').append('\u2664')
 console.log($('.playercards'));
-$('.playercards').append('\u2662');
+$diamond = $('.playercards').append('\u2662');
 console.log($('.playercards'));
-$('.playercards').append('\u2667');
-console.log($('.playercards'));
+$clubs = $('.playercards').append('\u2667');
+console.log($($clubs));
+
+$heart.css('visibility', 'hidden');
+$spade.css('visibility', 'hidden');
+$diamond.css('visibility', 'hidden');
+$clubs.css('visibility', 'hidden');
+
+
+
+
+
+// let $playerCards = $('.playerCards'),
+//     $total       = $('.total'),
+//     playerCards;
+//
+// let updateUI = function (){
+//      /* Cards */
+//      $playerCards.html(playerCards.toHtml());
+//      /* Score */
+//      $total.find(".digits").html(yourHand.score());
+//      $("#wins").text(wins);
+//      $("#losses").text(losses);
+//  };
+//  updateUI();
 
 
 

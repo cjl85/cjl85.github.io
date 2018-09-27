@@ -1,5 +1,6 @@
 * {
   cursor: pointer;
+  background-size: auto;
 }
 
 body {
@@ -75,7 +76,6 @@ h1 {
 }
 
 .total {
-  /* background-color: red; */
   border: 1px solid black;
   border-radius: 4px;
   display: inline-block;
