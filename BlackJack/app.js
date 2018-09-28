@@ -1,6 +1,7 @@
 $(() => {
   console.log('hi');
-  // $('.playercards').css('visibility', 'hidden');
+  // Defined a class of deck
+  // Assigned suits/values into variables
 
   class Deck {
     constructor() {
@@ -17,6 +18,15 @@ $(() => {
     //     $suits.css('red');
     //   }
     // }
+
+        // Ran a for - in loop to iterate over array and
+        // add each value to a suit.
+
+        // Not sure why a for - in loop works in this case
+        // as opposed to a for - of loop.
+
+        // For - in  loop generally works on properties of an object in an arbitrary order.
+        // For - of loops generally used for arrays that have order of access importance.
 
         for (let suit in suits) {
           for (let value in values) {
@@ -39,7 +49,16 @@ $(() => {
         }
       }
 
-      //Used Fisher-Yates shuffle
+      // Used Fisher-Yates shuffle to randomize card selection
+
+      // Assigned this.deck to the variable deck
+      // Assigned m to deck length and also defined i
+
+      // While there are remaining elements to shuffle
+
+      // Choose a random remaining element
+
+      // Swap it with the current element
 
       shuffle() {
         const deck = this.deck;
@@ -53,13 +72,17 @@ $(() => {
 
         return this;
       }
+
+      // Deal method
+
+      //
       deal () {
-        let cards = [],
-                m = Array.length;
+        // let cards = [],
+          let m = Array.length;
 
         for (let i = 0; i <= m; i++) {
               let drawnCard = this.deck.shift()
-              cards.push(drawnCard)
+              // cards.push(drawnCard)
               this.drawnCards.push(drawnCard)
             }
             return this.drawnCards
@@ -97,7 +120,7 @@ $(() => {
 
         })
         $stand.on('click', () => {
-          console.log('ma');
+          console.log('Stay');
         })
 
   });
