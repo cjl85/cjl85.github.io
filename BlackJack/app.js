@@ -40,10 +40,17 @@ $(() => {
         let cards = [],
                 m = Array.length;
 
-        for (let i = 0; i < m; i++) {
+        for (let i = 0; i <= m; i++) {
               let drawnCard = this.deck.shift()
               cards.push(drawnCard)
               this.drawnCards.push(drawnCard)
+              let value = 0;
+              $('.digits').empty()
+              if(this.drawnCards[i] === '2 of ♠' || this.drawnCards[i] === '2 of ♥' || this.drawnCards[i] === '2 of ♣' || this.drawnCards[i] === '2 of ') {
+                  value += 2;
+              $('.digits').append(value);
+              }
+
         }
         return this.drawnCards
       }
@@ -60,7 +67,26 @@ $(() => {
         console.log(deck1.deal());
 
         $('.playercards').css('visibility', 'hidden');
-        
+
+        let $deal  = $('.deal'),
+            $hit   = $('.hit'),
+            $stand = $('.stand');
+
+
+
+        $deal.on('click', () => {
+            $('.playercards:nth-child(-n+2)').css('visibility', 'visible');
+            $('.playercards:nth-child(1)').append(deck1.drawnCards[0]);
+            $('.playercards:nth-child(2)').append(deck1.drawnCards[1]);
+        })
+        $hit.on('click', () => {
+            $('.playercards:nth-child(3)').css('visibility', 'visible');
+
+        })
+        $stand.on('click', () => {
+          console.log('ma');
+        })
+
   });
 
 
@@ -106,22 +132,7 @@ $(() => {
   // }
   //
   //
-  let $deal  = $('.deal'),
-      $hit   = $('.hit'),
-      $stand = $('.stand');
 
-
-
-  $deal.on('click', () => {
-      $('.playercards:nth-child(-n+2)').css('visibility', 'visible');
-  })
-  $hit.on('click', () => {
-      $('.playercards:nth-child(3)').css('visibility', 'visible');
-
-  })
-  $stand.on('click', () => {
-    console.log('ma');
-  })
 
   // let showDeal = () => {
   //     $hit.hide();
