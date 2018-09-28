@@ -75,14 +75,16 @@ $(() => {
 
       // Deal method
 
-      //
+      // Iterate through the array
+      // Take a card out of the deck and store into variable
+
+      // Push that card into drawncards array defined at top
+
       deal () {
-        // let cards = [],
           let m = Array.length;
 
         for (let i = 0; i <= m; i++) {
               let drawnCard = this.deck.shift()
-              // cards.push(drawnCard)
               this.drawnCards.push(drawnCard)
             }
             return this.drawnCards
@@ -92,14 +94,17 @@ $(() => {
 
         const deck1 = new Deck();
         console.log(deck1.deck);
-      // deck1.shuffle()
-        console.log(deck1.deck);
-
         // deck1.printDeck();
         deck1.shuffle();
         deck1.deal();
         console.log(deck1.deal());
 
+
+        // Assigned variables to each class of buttons
+        // Attached 1st & 2nd drawnCards to $deal button
+        // On click deal will reveal the hidden div and show the appropriate values on the card
+
+        // On click hit will reveal the next div and next card values
 
         let $deal  = $('.deal'),
             $hit   = $('.hit'),
@@ -117,16 +122,25 @@ $(() => {
             $('.playercards:nth-child(3)').append(deck1.drawnCards[2]);
             // $('.playercards:nth-child(4)').css('visibility', 'visible');
             // $('.playercards:nth-child(4)').append(deck1.drawnCards[3]);
-
         })
+
         $stand.on('click', () => {
           console.log('Stay');
         })
-
   });
 
+// TO DOS
 
+// Assign appropriate points to cards and have that be added up in the Total (Represents Player's total value of cards)
+// Deal both to player and computer (Currently only player's card shown)
+// Compare the 2 total values and determine who won
+// Keep track of wins and losses in the record box
 
+// BUGS TO FIX
+
+// Make either deal button disppear on click or not able to click deal after clicking once until round is over
+// Same for the hit button, not allow the user to continue clicking button after no more options
+// Add appropriate color to suits
 
 
   //   const hand = (deck) => {
