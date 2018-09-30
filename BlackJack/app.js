@@ -32,16 +32,39 @@ class Player {
 const user = new Player('Bob');
 console.log(user);
 
+
+class Hand {
+  constructor() {
+
+  }
+}
+
+class Game {
+  constructor(inProgress) {
+    this.inProgress = false;
+    this.dealerHand = new Hand();
+    this.playerHand = new Hand();
+
+  }
+  isInProgress() {
+    return this.inProgress;
+  }
+}
+
 // let card = (point) => {
 //   this.points = point;
 //   return {
 //     point: this.points
 //   }
 // }
+const game = new Game();
+
+
 class Deck {
   constructor () {
       this.deck = [];
       this.drawnCards = [];
+
       this.points = [];
 
 
@@ -111,20 +134,28 @@ class Deck {
           }
 
               $('.deal').on('click', () => {
+              if(game.isInProgress()) {
+                  return;
+              }
+
               $('.playercards:nth-child(-n+2)').css('visibility', 'visible');
-              $('.dealerhand:nth-child(1)').css('visibility', 'visible');
-              $('.dealerhand:nth-child(2)').css('visibility', 'visible');
+              $('.dealerhand:nth-child(-n+2)').css('visibility', 'visible');
 
-              $('.playercards:nth-child(1)').append(deck1.deal());
-              $('.playercards:nth-child(2)').append(deck1.deal());
+              $('.playercards:nth-child(n+3)').css('visibility', 'hidden');
+              $('.dealerhand:nth-child(n+3)').css('visibility', 'hidden');
 
-              $('.dealerhand:nth-child(1)').append(deck1.deal());
-              $('.dealerhand:nth-child(2)').append(deck1.deal());
+              $('.playercards:nth-child(1)').text(deck1.deal());
+              $('.playercards:nth-child(2)').text(deck1.deal());
+
+              $('.dealerhand:nth-child(1)').text(deck1.deal());
+              $('.dealerhand:nth-child(2)').text(deck1.deal());
+
+
 
             })
               $('.hit').on('click', () => {
                 $('.playercards:nth-child(3)').css('visibility', 'visible');
-                $('.playercards:nth-child(3)').append(deck1.deal());
+                $('.playercards:nth-child(3)').text(deck1.deal());
               })
               $('.stand').on('click', () => {
                 $('.dealerhand:nth-child(3)').css('visibility', 'visible');
@@ -132,15 +163,6 @@ class Deck {
 
               })
         });
-
-
-
-
-
-
-
-
-
 
 
 
