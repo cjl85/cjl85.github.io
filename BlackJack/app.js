@@ -18,7 +18,7 @@ const $blackJack = () => {
       alert('Tie game')
     } else if (dealerPoints < userPoints){
       alert('Dealer Loses')
-    } else if (dealerPoints > userPoints) {
+    } else if (dealerPoints > userPoints){
       alert('Dealer Wins')
     }
   }
@@ -32,16 +32,21 @@ class Player {
 const user = new Player('Bob');
 console.log(user);
 
+// let card = (point) => {
+//   this.points = point;
+//   return {
+//     point: this.points
+//   }
+// }
 class Deck {
   constructor () {
-    this.deck = [];
-    this.drawnCards = [];
-    this.userHand = [];
-    this.dealerHand = [];
+      this.deck = [];
+      this.drawnCards = [];
+      this.points = [];
 
 
-    const suits = ['♦','♣','♥','♠'];
-    const values = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'];
+    let suits = ['♦','♣','♥','♠'];
+    let values = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'];
 
             for (let suit in suits) {
               for (let value in values) {
@@ -51,12 +56,9 @@ class Deck {
                       points = 10;
                     if (values[value] === 'A')
                       points = 11;
+                  this.points.push(points)
               }
             }
-          }
-          generatePoints(points, values) {
-            this.points = points;
-            this.values  = values;
           }
           printDeck () {
             if(!this.deck.length){
@@ -118,13 +120,15 @@ class Deck {
 
               $('.dealerhand:nth-child(1)').append(deck1.deal());
               $('.dealerhand:nth-child(2)').append(deck1.deal());
+
             })
               $('.hit').on('click', () => {
                 $('.playercards:nth-child(3)').css('visibility', 'visible');
                 $('.playercards:nth-child(3)').append(deck1.deal());
               })
               $('.stand').on('click', () => {
-                $('.dealerhand:nth-child(-n+2)').css('visibility', 'visible');
+                $('.dealerhand:nth-child(3)').css('visibility', 'visible');
+                $('.dealerhand:nth-child(4)').css('visibility', 'visible');
 
               })
         });
