@@ -1,8 +1,10 @@
 const $blackJack = () => {
 };
-  let playerValue = 0,
-      dealerValue = 0;
+  let playerPoints = 0;
+  let dealerPoints = 0;
 
+const wins = $('.wins').text(playerPoints);
+const losses = $('.losses').text(dealerPoints);
   // checkWinner = () => {
   //   if(user.record === 1) {
   //       alert('You Win')
@@ -15,15 +17,19 @@ const $blackJack = () => {
       deck1.deal();
       $stand();
     } else if (dealerPoints > 21){
-      alert('Dealer has busted')
+      alert('Dealer has busted');
+      playerPoints++;
     } else if (dealerPoints === playerPoints){
       alert('Tie game')
     } else if (dealerPoints < playerPoints){
-      alert('Dealer Loses')
+      alert('Dealer Loses');
+      playerPoints++;
     } else if (dealerPoints > playerPoints){
-      alert('Dealer Wins')
+      alert('Dealer Wins');
+      dealerPoints++;
     } else if (playerPoints > 21) {
-      alert('Player has busted')
+      alert('Player has busted');
+      dealerPoints++;
     }
   }
 
@@ -67,20 +73,27 @@ let values = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'];
 // let points = {     // Add Key/Value pair
 //   // key:
 //   // value:
-// };
+// }
+const $digits = $('.digits');
+const $worth  = 0;
+var indexKey1;
 
-        for (let suit in suits) {
-          for (let value in values) {
-            let p = parseInt(values[value]);
-              if (values[value] === 'J' || values[value] === 'Q' || values[value] === 'K')
-                p = 10;
-              if (values[value] === 'A')
-                p = 11;
+
+for ( let i = 0; i < values.length; i++) {
+  if(values[i] == "A") {
+    indexKey1 = 11;
+  }
+  else if (values[i] == "J" || values[i] == "Q" || values[i] == "K"){
+    indexKey1 = 10;
+  }
+}
+
+
+
                 // let key   = `${values[value]}${suits[suit]}`
                 // let value = p
                 // points.push(p)
-          }
-        }
+        // }
 
 class Deck {
   constructor () {
@@ -116,9 +129,9 @@ class Deck {
             }
             deal() {
                 let drawnCard = this.deck.shift()
-                    this.drawnCards.push(drawnCard)
+                    this.drawnCards.push(drawnCard);
 
-                    return drawnCard
+                    return drawnCard;
                 }
 
           };
@@ -163,9 +176,10 @@ class Deck {
               let card2 = deck1.deal();
               let cardValue1 = 2//points[card];
               let cardValue2 = 1//points[card];
-              console.log("hi");
-              console.log(card1);
-              console.log(cardValue1);
+              console.log(indexKey1);
+              // console.log("hi");
+              // console.log(card1);
+              // console.log(cardValue1);
               $('.playercards:nth-child(1)').text(card1);
               $('.playercards:nth-child(2)').text(card2);
 
@@ -179,14 +193,15 @@ class Deck {
               $('.dealerhand:nth-child(2)').text(dealerCard2);
 
               playerValue = cardValue1 + cardValue2
-              dealerValue = dealerValue1 + dealervalue2
+              dealerValue = dealerValue1 + dealerValue2
             })
               $('.hit').on('click', () => {
                 $('.playercards:nth-child(' + nextPlayerBox + ')').css('visibility', 'visible');
                 $('.playercards:nth-child(' + nextPlayerBox + ')').text(deck1.deal());
-                let card = deck1.deal();
-                console.log(card);
+                // let card = deck1.deal();
+                // console.log(card);
                 nextPlayerBox++;
+                console.log(p);
               })
               $('.stand').on('click', () => {
                 let nextDealerBox = 3
