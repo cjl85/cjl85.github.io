@@ -33,6 +33,8 @@ const end = () => {
     alert("Dealer Wins");
   } else if (dealerPoints < 17) {
     this.deck.shift();
+  } else if (playerPoints === 21){
+    alert("Player Wins")
   }
   $('.wins').empty();
   $('.losses').empty();
@@ -192,15 +194,14 @@ $(() => {
       $('.playercards:nth-child(-n+2)').css('visibility', 'visible');
       $('.playercards:nth-child(1)').text(game.playerHand[0].value + game.playerHand[0].suit);
       $('.playercards:nth-child(2)').text(game.playerHand[1].value + game.playerHand[1].suit);
-
-      $('.digits').empty();
-      $('.digits').text(playerPoints);
     })
 
   $(".hit").on("click", () => {
       $(".playercards:nth-child(3)").css('visibility', 'visible');
       $(".playercards:nth-child(3)").text(game.playerHand[2].value + game.playerHand[2].suit);
 
+      $('.digits').empty();
+      $('.digits').text(playerPoints);
 
       // $('.digits').text(playerPoints);
     });
@@ -219,6 +220,7 @@ $(() => {
 
   $(".reset").on("click", () => {
       window.location.reload(true);
+      deck1.shuffle();
   })
 });
 
