@@ -155,7 +155,7 @@ $(() => {
   //------------------------------------------------------------------------------------
   // Game: Deal a card to add to dealerHand
   //------------------------------------------------------------------------------------
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < 3; i++) {
     dealCardToPlayer(game.dealerHand);
     dealCardToPlayer(game.playerHand);
   }
@@ -173,28 +173,32 @@ $(() => {
     playerPoints += card.points;
     $('.playercards:nth-child(1)').text(game.playerHand[0].value + game.playerHand[0].suit);
     $('.playercards:nth-child(2)').text(game.playerHand[1].value + game.playerHand[1].suit);
-    // $('.playercards:nth-child(3)').text(game.playerHand[1].value + game.playerHand[1].suit);
   }
   console.log(game.playerHand);
   console.log(playerPoints);
 
   $('.digits').empty();
   $('.digits').text(playerPoints);
-
   $(".deal").on("click", () => {
       $('.playercards:nth-child(-n+2)').css('visibility', 'visible');
-      $('.dealerhand:nth-child(-n+2)').css('visibility', 'visible');
     })
+  $(".hit").on("click", () => {
+      $(".playercards:nth-child(3)").css('visibility', 'visible');
+      $(".playercards:nth-child(3)").text(game.playerHand[2].value + game.playerHand[2].suit);
+    });
+  $(".stand").on("click", () => {
+      $('.dealerhand:nth-child(-n+2)').css('visibility', 'visible');
+      $('.dealerhand:nth-child(1)').text(game.dealerHand[0].value + game.dealerHand[0].suit);
+      $('.dealerhand:nth-child(2)').text(game.dealerHand[1].value + game.dealerHand[1].suit);
 
-      $(".hit").on("click", () => {
-        $(".playercards:nth-child(3)").css('visibility', 'visible');
-      });
+      if(game.dealerHand.value + game.dealerHand.value < 17){
+         $('.dealerhand:nth-child(3)').css('visibility', 'visible');
+         $('.dealerhand:nth-child(3)').text(game.dealerHand[2].value + game.dealerHand[2].suit);
+      } else if(game.dealerHand.value + game.dealerHand.value > 21 ) {
+            end();
+      }
+  })
 });
-
-// //------------------------------------------------------------------------------------
-// // What is this for?
-// //------------------------------------------------------------------------------------
-// let nextPlayerBox, nextDealerBox;
 
 // //------------------------------------------------------------------------------------
 // // Deals two cards
