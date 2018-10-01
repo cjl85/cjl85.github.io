@@ -9,12 +9,13 @@ let dScore = 0,
 
 
 //------------------------------------------------------------------------------------
-// If dealerPoints < 17, deal a card
+// If playerPoints > 21, busted
 // dealerPoints > 21, dealer is busted
 // dealerPoints === playerPoints, tie game
-// dealerPoints < playerPoints, dealer loses
-// dealerPoints > playerPoints, dealer wins
-// playerPoints > 21
+// dealerPoints < playerPoints and playerPoints is less than/equal to 21, player wins
+// dealerPoints > playerPoints and dealerPoints is less than/equal to 21, dealer wins
+// dealerPoints < 17, take another card
+// playerPoints === 21, auto player win
 //------------------------------------------------------------------------------------
 const end = () => {
     if (playerPoints > 21) {
@@ -32,7 +33,7 @@ const end = () => {
     dScore += 1;
     alert("Dealer Wins");
   } else if (dealerPoints < 17) {
-    this.deck.shift();
+    dealCardToPlayer(game.dealerHand);
   } else if (playerPoints === 21){
     alert("Player Wins")
   }
@@ -212,15 +213,14 @@ $(() => {
       $('.dealerhand:nth-child(2)').text(game.dealerHand[1].value + game.dealerHand[1].suit);
 
 
-      $('.dealerhand:nth-child(3)').css('visibility', 'visible');
-      $('.dealerhand:nth-child(3)').text(game.dealerHand[2].value + game.dealerHand[2].suit);
+      // $('.dealerhand:nth-child(3)').css('visibility', 'visible');
+      // $('.dealerhand:nth-child(3)').text(game.dealerHand[2].value + game.dealerHand[2].suit);
 
       end();
   })
 
   $(".reset").on("click", () => {
       window.location.reload(true);
-      deck1.shuffle();
   })
 });
 
