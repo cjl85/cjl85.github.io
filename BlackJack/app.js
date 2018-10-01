@@ -169,14 +169,26 @@ $(() => {
   console.log(game.dealerHand);
   console.log(dealerPoints);
 
-  for (const card of game.playerHand) {
+  for (let card of game.playerHand) {
     playerPoints += card.points;
+    $('.playercards:nth-child(1)').text(game.playerHand[0].value + game.playerHand[0].suit);
+    $('.playercards:nth-child(2)').text(game.playerHand[1].value + game.playerHand[1].suit);
+    // $('.playercards:nth-child(3)').text(game.playerHand[1].value + game.playerHand[1].suit);
   }
   console.log(game.playerHand);
   console.log(playerPoints);
 
   $('.digits').empty();
   $('.digits').text(playerPoints);
+
+  $(".deal").on("click", () => {
+      $('.playercards:nth-child(-n+2)').css('visibility', 'visible');
+      $('.dealerhand:nth-child(-n+2)').css('visibility', 'visible');
+    })
+
+      $(".hit").on("click", () => {
+        $(".playercards:nth-child(3)").css('visibility', 'visible');
+      });
 });
 
 // //------------------------------------------------------------------------------------
@@ -207,14 +219,10 @@ $(() => {
 //   end();
 // };
 
-// $(() => {
-//   //------------------------------------------------------------------------------------
-//   // On click listener on deal button
-//   //------------------------------------------------------------------------------------
-//   $(".deal").on("click", () => {
-//     if (game.isInProgress()) {
-//       return;
-//     }
+
+  //------------------------------------------------------------------------------------
+  // On click listener on deal button
+  //------------------------------------------------------------------------------------
 
 //     //------------------------------------------------------------------------------------
 //     // What is this for?
@@ -222,11 +230,11 @@ $(() => {
 //     nextPlayerBox = 3;
 //     nextDealerBox = 3;
 
-//     $(".playercards:nth-child(-n+2)").css("visibility", "visible");
-//     $(".dealerhand:nth-child(-n+2)").css("visibility", "visible");
-
-//     $(".playercards:nth-child(n+3)").css("visibility", "hidden");
-//     $(".dealerhand:nth-child(n+3)").css("visibility", "hidden");
+    // $(".playercards:nth-child(-n+2)").css("visibility", "visible");
+    // $(".dealerhand:nth-child(-n+2)").css("visibility", "visible");
+    //
+    // $(".playercards:nth-child(n+3)").css("visibility", "hidden");
+    // $(".dealerhand:nth-child(n+3)").css("visibility", "hidden");
 
 //     let card1 = deck1.deal();
 //     let card2 = deck1.deal();
@@ -235,8 +243,8 @@ $(() => {
 //     console.log("hi");
 //     console.log(card1);
 //     console.log(cardValue1);
-//     $(".playercards:nth-child(1)").text(card1);
-//     $(".playercards:nth-child(2)").text(card2);
+    // $(".playercards:nth-child(1)").text(card1);
+    // $(".playercards:nth-child(2)").text(card2);
 
 //     let dealerCard1 = deck1.deal();
 //     let dealerCard2 = deck1.deal();
@@ -253,16 +261,7 @@ $(() => {
 //   //------------------------------------------------------------------------------------
 //   // On click listener on the hit button
 //   //------------------------------------------------------------------------------------
-//   $(".hit").on("click", () => {
-//     $(".playercards:nth-child(" + nextPlayerBox + ")").css(
-//       "visibility",
-//       "visible"
-//     );
-//     $(".playercards:nth-child(" + nextPlayerBox + ")").text(deck1.deal());
-//     let card = deck1.deal();
-//     console.log(card);
-//     nextPlayerBox++;
-//   });
+
 
 //   //------------------------------------------------------------------------------------
 //   // On click listener on the stand button
