@@ -167,7 +167,7 @@ $(() => {
   //------------------------------------------------------------------------------------
   // Game: Deal a card to add to dealerHand
   //------------------------------------------------------------------------------------
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i <= 2; i++) {
     dealCardToPlayer(game.dealerHand);
     dealCardToPlayer(game.playerHand);
   }
@@ -181,7 +181,7 @@ $(() => {
   console.log(game.dealerHand);
   console.log(dealerPoints);
 
-  for (let card of game.playerHand) {
+  for (const card of game.playerHand) {
     playerPoints += card.points;
 
   }
