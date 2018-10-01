@@ -17,8 +17,9 @@ let dScore = 0,
 // playerPoints > 21
 //------------------------------------------------------------------------------------
 const end = () => {
-    if (dealerPoints < 17) {
-    deal();
+    if (playerPoints > 21) {
+    alert("Player has busted")
+    dScore += 1;
   } else if (dealerPoints > 21) {
     pScore += 1;
     alert("Dealer has busted");
@@ -30,9 +31,8 @@ const end = () => {
   } else if (dealerPoints > playerPoints && dealerPoints <= 21) {
     dScore += 1;
     alert("Dealer Wins");
-  } else if (playerPoints > 21) {
-    dScore += 1;
-    alert("Player has busted");
+  } else if (dealerPoints < 17) {
+    this.deck.shift();
   }
   $('.wins').empty();
   $('.losses').empty();
@@ -40,11 +40,11 @@ const end = () => {
   const $winScore = $('.wins').text(pScore);
   const $loseScore = $('.losses').text(dScore);
 
-  // if($winScore === 5) {
-  //   alert('player wins!')
-  // } else ($loseScore === 5) {
-  //   alert('dealer wins!')
-  // }
+  if($winScore === 1) {
+    alert('player wins!')
+  } else if ($loseScore === 1) {
+    alert('dealer wins!')
+  }
 };
 
 //------------------------------------------------------------------------------------
@@ -200,6 +200,9 @@ $(() => {
   $(".hit").on("click", () => {
       $(".playercards:nth-child(3)").css('visibility', 'visible');
       $(".playercards:nth-child(3)").text(game.playerHand[2].value + game.playerHand[2].suit);
+
+
+      // $('.digits').text(playerPoints);
     });
 
   $(".stand").on("click", () => {
@@ -210,13 +213,21 @@ $(() => {
 
       $('.dealerhand:nth-child(3)').css('visibility', 'visible');
       $('.dealerhand:nth-child(3)').text(game.dealerHand[2].value + game.dealerHand[2].suit);
+
       end();
   })
 
   $(".reset").on("click", () => {
-
+      window.location.reload(true);
   })
 });
+
+
+// check() {
+//   if(game.playerHand[0].value + game.playerHand[1].value + game.playerHand[2].value > 21) {
+//     end();
+//   }
+// }
 
 // //------------------------------------------------------------------------------------
 // // Deals two cards
