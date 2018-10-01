@@ -17,27 +17,35 @@ let dScore = 0,
 // playerPoints > 21
 //------------------------------------------------------------------------------------
 const end = () => {
-  if (dealerPoints < 17) {
-    deck1.deal();
-    $stand();
+    if (dealerPoints < 17) {
+    deal();
   } else if (dealerPoints > 21) {
     pScore += 1;
     alert("Dealer has busted");
   } else if (dealerPoints === playerPoints) {
     alert("Tie game");
-  } else if (dealerPoints < playerPoints) {
+  } else if (dealerPoints < playerPoints && playerPoints <= 21) {
     pScore += 1;
     alert("Dealer Loses");
-  } else if (dealerPoints > playerPoints) {
+  } else if (dealerPoints > playerPoints && dealerPoints <= 21) {
     dScore += 1;
     alert("Dealer Wins");
   } else if (playerPoints > 21) {
     dScore += 1;
     alert("Player has busted");
   }
+  $('.wins').empty();
+  $('.losses').empty();
+
+  const $winScore = $('.wins').text(pScore);
+  const $loseScore = $('.losses').text(dScore);
+
+  // if($winScore === 5) {
+  //   alert('player wins!')
+  // } else ($loseScore === 5) {
+  //   alert('dealer wins!')
+  // }
 };
-const $winScore = $('.wins').text(pScore);
-const $loseScore = $('.losses').text(dScore);
 
 //------------------------------------------------------------------------------------
 // Game class - takes inProgress as param [inProgress, dealerHand, playerHand]
@@ -136,6 +144,8 @@ class Deck {
   }
 }
 
+
+
 //------------------------------------------------------------------------------------
 // We are creating a new deck1
 //------------------------------------------------------------------------------------
@@ -171,32 +181,40 @@ $(() => {
 
   for (let card of game.playerHand) {
     playerPoints += card.points;
-    $('.playercards:nth-child(1)').text(game.playerHand[0].value + game.playerHand[0].suit);
-    $('.playercards:nth-child(2)').text(game.playerHand[1].value + game.playerHand[1].suit);
+
   }
   console.log(game.playerHand);
   console.log(playerPoints);
 
-  $('.digits').empty();
-  $('.digits').text(playerPoints);
+
+
   $(".deal").on("click", () => {
       $('.playercards:nth-child(-n+2)').css('visibility', 'visible');
+      $('.playercards:nth-child(1)').text(game.playerHand[0].value + game.playerHand[0].suit);
+      $('.playercards:nth-child(2)').text(game.playerHand[1].value + game.playerHand[1].suit);
+
+      $('.digits').empty();
+      $('.digits').text(playerPoints);
     })
+
   $(".hit").on("click", () => {
       $(".playercards:nth-child(3)").css('visibility', 'visible');
       $(".playercards:nth-child(3)").text(game.playerHand[2].value + game.playerHand[2].suit);
     });
+
   $(".stand").on("click", () => {
       $('.dealerhand:nth-child(-n+2)').css('visibility', 'visible');
       $('.dealerhand:nth-child(1)').text(game.dealerHand[0].value + game.dealerHand[0].suit);
       $('.dealerhand:nth-child(2)').text(game.dealerHand[1].value + game.dealerHand[1].suit);
 
-      if(game.dealerHand.value + game.dealerHand.value < 17){
-         $('.dealerhand:nth-child(3)').css('visibility', 'visible');
-         $('.dealerhand:nth-child(3)').text(game.dealerHand[2].value + game.dealerHand[2].suit);
-      } else if(game.dealerHand.value + game.dealerHand.value > 21 ) {
-            end();
-      }
+
+      $('.dealerhand:nth-child(3)').css('visibility', 'visible');
+      $('.dealerhand:nth-child(3)').text(game.dealerHand[2].value + game.dealerHand[2].suit);
+      end();
+  })
+
+  $(".reset").on("click", () => {
+
   })
 });
 
@@ -227,12 +245,6 @@ $(() => {
   //------------------------------------------------------------------------------------
   // On click listener on deal button
   //------------------------------------------------------------------------------------
-
-//     //------------------------------------------------------------------------------------
-//     // What is this for?
-//     //------------------------------------------------------------------------------------
-//     nextPlayerBox = 3;
-//     nextDealerBox = 3;
 
     // $(".playercards:nth-child(-n+2)").css("visibility", "visible");
     // $(".dealerhand:nth-child(-n+2)").css("visibility", "visible");
