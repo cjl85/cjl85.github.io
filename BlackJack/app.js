@@ -1,219 +1,279 @@
-const $blackJack = () => {
-};
-  let playerPoints = 0;
-  let dealerPoints = 0;
+//------------------------------------------------------------------------------------
+// Constants to store playerValue and dealerValue
+//------------------------------------------------------------------------------------
+let dealerPoints = 0,
+  playerPoints = 0;
 
-const wins = $('.wins').text(playerPoints);
-const losses = $('.losses').text(dealerPoints);
-  // checkWinner = () => {
-  //   if(user.record === 1) {
-  //       alert('You Win')
-  //   } else if (dealer.record === 1){
-  //       alert('Dealer Wins')
-  //   }
-  // }
-  end = () => {
-    if(dealerPoints < 17){
-      deck1.deal();
-      $stand();
-    } else if (dealerPoints > 21){
-      alert('Dealer has busted');
-      playerPoints++;
-    } else if (dealerPoints === playerPoints){
-      alert('Tie game')
-    } else if (dealerPoints < playerPoints){
-      alert('Dealer Loses');
-      playerPoints++;
-    } else if (dealerPoints > playerPoints){
-      alert('Dealer Wins');
-      dealerPoints++;
-    } else if (playerPoints > 21) {
-      alert('Player has busted');
-      dealerPoints++;
+let dScore = 0,
+    pScore = 0;
+
+
+//------------------------------------------------------------------------------------
+// If dealerPoints < 17, deal a card
+// dealerPoints > 21, dealer is busted
+// dealerPoints === playerPoints, tie game
+// dealerPoints < playerPoints, dealer loses
+// dealerPoints > playerPoints, dealer wins
+// playerPoints > 21
+//------------------------------------------------------------------------------------
+const end = () => {
+  if (dealerPoints < 17) {
+    deck1.deal();
+    $stand();
+  } else if (dealerPoints > 21) {
+    pScore += 1;
+    alert("Dealer has busted");
+  } else if (dealerPoints === playerPoints) {
+    alert("Tie game");
+  } else if (dealerPoints < playerPoints) {
+    pScore += 1;
+    alert("Dealer Loses");
+  } else if (dealerPoints > playerPoints) {
+    dScore += 1;
+    alert("Dealer Wins");
+  } else if (playerPoints > 21) {
+    dScore += 1;
+    alert("Player has busted");
+  }
+};
+const $winScore = $('.wins').text(pScore);
+const $loseScore = $('.losses').text(dScore);
+
+//------------------------------------------------------------------------------------
+// Game class - takes inProgress as param [inProgress, dealerHand, playerHand]
+//------------------------------------------------------------------------------------
+class Game {
+  constructor() {
+    //------------------------------------------------------------------------------------
+    // Stores the dealer hand
+    //------------------------------------------------------------------------------------
+    this.dealerHand = [];
+    //------------------------------------------------------------------------------------
+    // Stores the player hand
+    //------------------------------------------------------------------------------------
+    this.playerHand = [];
+  }
+}
+
+//------------------------------------------------------------------------------------
+// Create new Game object
+//------------------------------------------------------------------------------------
+const game = new Game();
+
+//------------------------------------------------------------------------------------
+// SUITS AND VALUES ARRAY
+//------------------------------------------------------------------------------------
+let suits = ["♦", "♣", "♥", "♠"];
+let values = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"];
+
+//------------------------------------------------------------------------------------
+// Create a class Card - takes in suit & value as params
+//------------------------------------------------------------------------------------
+class Card {
+  constructor(suit, value) {
+    this.suit = suit;
+    this.value = value;
+    //------------------------------------------------------------------------------------
+    // Stores the points that each card can add to total score
+    //------------------------------------------------------------------------------------
+    this.points = this.determinePoints(suit, value);
+  }
+
+  determinePoints(suit, value) {
+    let p = parseInt(value);
+    if (value === "J" || value === "Q" || value === "K") p = 10;
+    if (value === "A") p = 11;
+    return p;
+  }
+}
+
+//------------------------------------------------------------------------------------
+// Class Deck
+//------------------------------------------------------------------------------------
+class Deck {
+  //------------------------------------------------------------------------------------
+  // Creating a deck and drawnCards
+  //------------------------------------------------------------------------------------
+  constructor() {
+    this.deck = [];
+
+    //------------------------------------------------------------------------------------
+    // Iterate through suit and values array
+    //------------------------------------------------------------------------------------
+    for (let suit of suits) {
+      for (let value of values) {
+        //------------------------------------------------------------------------------------
+        // Push cards
+        //------------------------------------------------------------------------------------
+        const card = new Card(suit, value);
+        this.deck.push(card);
+      }
     }
   }
 
-class Player {
-  constructor(name, record) {
-      this.name   = name;
-      this.record = 0;
+  //------------------------------------------------------------------------------------
+  // Shuffle deck function
+  //------------------------------------------------------------------------------------
+  shuffle() {
+    const deck = this.deck;
+    let m = deck.length,
+      i;
+
+    while (m) {
+      i = Math.floor(Math.random() * m--);
+
+      [deck[m], deck[i]] = [deck[i], deck[m]];
+    }
+
+    return deck;
   }
-}
-const user = new Player('Bob');
-console.log(user);
 
-
-class Hand {
-  constructor() {
-
-  }
-}
-
-class Game {
-  constructor(inProgress) {
-    this.inProgress = false;
-    this.dealerHand = new Hand();
-    this.playerHand = new Hand();
-
-  }
-  isInProgress() {
-    return this.inProgress;
+  //------------------------------------------------------------------------------------
+  // Deal function
+  //------------------------------------------------------------------------------------
+  deal() {
+    return this.deck.shift();
   }
 }
 
-// let card = (point) => {
-//   this.points = point;
-//   return {
-//     point: this.points
-//   }
-// }
-const game = new Game();
-let suits = ['♦','♣','♥','♠'];
-let values = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'];
-// let points = {     // Add Key/Value pair
-//   // key:
-//   // value:
-// }
-const $digits = $('.digits');
-const $worth  = 0;
-var indexKey1;
+//------------------------------------------------------------------------------------
+// We are creating a new deck1
+//------------------------------------------------------------------------------------
+const deck1 = new Deck();
+// console.log(deck1.deck);
+deck1.shuffle();
+// console.log(deck1.deck);
 
+//------------------------------------------------------------------------------------
+// Function to dealCardToPlayer
+//------------------------------------------------------------------------------------
+const dealCardToPlayer = hand => {
+  hand.push(deck1.deal());
+};
 
-for ( let i = 0; i < values.length; i++) {
-  if(values[i] == "A") {
-    indexKey1 = 11;
+$(() => {
+  //------------------------------------------------------------------------------------
+  // Game: Deal a card to add to dealerHand
+  //------------------------------------------------------------------------------------
+  for (let i = 0; i < 2; i++) {
+    dealCardToPlayer(game.dealerHand);
+    dealCardToPlayer(game.playerHand);
   }
-  else if (values[i] == "J" || values[i] == "Q" || values[i] == "K"){
-    indexKey1 = 10;
+
+  //------------------------------------------------------------------------------------
+  // Assign points to each hand to determine total points
+  //------------------------------------------------------------------------------------
+  for (const card of game.dealerHand) {
+    dealerPoints += card.points;
   }
-}
+  console.log(game.dealerHand);
+  console.log(dealerPoints);
 
+  for (const card of game.playerHand) {
+    playerPoints += card.points;
+  }
+  console.log(game.playerHand);
+  console.log(playerPoints);
 
+  $('.digits').empty();
+  $('.digits').text(playerPoints);
+});
 
-                // let key   = `${values[value]}${suits[suit]}`
-                // let value = p
-                // points.push(p)
-        // }
+// //------------------------------------------------------------------------------------
+// // What is this for?
+// //------------------------------------------------------------------------------------
+// let nextPlayerBox, nextDealerBox;
 
-class Deck {
-  constructor () {
-      this.deck = [];
-      this.drawnCards = [];
+// //------------------------------------------------------------------------------------
+// // Deals two cards
+// //------------------------------------------------------------------------------------
+// const $deal = () => {
+//   deck1.deal();
+//   deck1.deal();
+//   // console.log(deck1.deal());
+// };
 
-            for (let suit in suits) {
-              for (let value in values) {
-                this.deck.push(`${values[value]}${suits[suit]}`);
-              }
-            }
-          }
-          printDeck () {
-            if(!this.deck.length){
-                console.log('Need new deck');
-          } else {
-              for (let i = 0; i < this.deck.length; i++) {
-                  console.log(this.deck[i]);
-              }
-            }
-          }
-          shuffle() {
-            const deck = this.deck;
-              let m = deck.length, i;
+// //------------------------------------------------------------------------------------
+// // Deals one card
+// //------------------------------------------------------------------------------------
+// const $hit = () => {
+//   deck1.deal();
+// };
 
-                while(m){
-                  i = Math.floor(Math.random() * m--);
+// //------------------------------------------------------------------------------------
+// // Stand ends the game
+// //------------------------------------------------------------------------------------
+// const $stand = () => {
+//   end();
+// };
 
-                    [deck[m], deck[i]] = [deck[i], deck[m]];
-                }
+// $(() => {
+//   //------------------------------------------------------------------------------------
+//   // On click listener on deal button
+//   //------------------------------------------------------------------------------------
+//   $(".deal").on("click", () => {
+//     if (game.isInProgress()) {
+//       return;
+//     }
 
-                return this;
-            }
-            deal() {
-                let drawnCard = this.deck.shift()
-                    this.drawnCards.push(drawnCard);
+//     //------------------------------------------------------------------------------------
+//     // What is this for?
+//     //------------------------------------------------------------------------------------
+//     nextPlayerBox = 3;
+//     nextDealerBox = 3;
 
-                    return drawnCard;
-                }
+//     $(".playercards:nth-child(-n+2)").css("visibility", "visible");
+//     $(".dealerhand:nth-child(-n+2)").css("visibility", "visible");
 
-          };
+//     $(".playercards:nth-child(n+3)").css("visibility", "hidden");
+//     $(".dealerhand:nth-child(n+3)").css("visibility", "hidden");
 
-            const deck1 = new Deck();
-            console.log(deck1.printDeck());
-            deck1.shuffle();
-            // console.log(deck1.printDeck());
-            // console.log(deck1.deal());
+//     let card1 = deck1.deal();
+//     let card2 = deck1.deal();
+//     let cardValue1 = 2; //points[card];
+//     let cardValue2 = 1; //points[card];
+//     console.log("hi");
+//     console.log(card1);
+//     console.log(cardValue1);
+//     $(".playercards:nth-child(1)").text(card1);
+//     $(".playercards:nth-child(2)").text(card2);
 
+//     let dealerCard1 = deck1.deal();
+//     let dealerCard2 = deck1.deal();
+//     let dealerValue1 = 1; //points[card];
+//     let dealerValue2 = 1; //points[card];
 
-            let nextPlayerBox,
-                nextDealerBox;
+//     $(".dealerhand:nth-child(1)").text(dealerCard1);
+//     $(".dealerhand:nth-child(2)").text(dealerCard2);
 
-        $(() => {
-          const $deal = () => {
-            deck1.deal();
-            deck1.deal();
-            console.log(deck1.deal());
-          }
-          const $hit = () => {
-            deck1.deal();
-          }
-          const $stand = () => {
-            end();
-          }
+//     playerValue = cardValue1 + cardValue2;
+//     dealerValue = dealerValue1 + dealervalue2;
+//   });
 
-              $('.deal').on('click', () => {
-              if(game.isInProgress()) {
-                  return;
-              }
-              nextPlayerBox = 3
-              nextDealerBox = 3
+//   //------------------------------------------------------------------------------------
+//   // On click listener on the hit button
+//   //------------------------------------------------------------------------------------
+//   $(".hit").on("click", () => {
+//     $(".playercards:nth-child(" + nextPlayerBox + ")").css(
+//       "visibility",
+//       "visible"
+//     );
+//     $(".playercards:nth-child(" + nextPlayerBox + ")").text(deck1.deal());
+//     let card = deck1.deal();
+//     console.log(card);
+//     nextPlayerBox++;
+//   });
 
-              $('.playercards:nth-child(-n+2)').css('visibility', 'visible');
-              $('.dealerhand:nth-child(-n+2)').css('visibility', 'visible');
-
-              $('.playercards:nth-child(n+3)').css('visibility', 'hidden');
-              $('.dealerhand:nth-child(n+3)').css('visibility', 'hidden');
-
-              let card1 = deck1.deal();
-              let card2 = deck1.deal();
-              let cardValue1 = 2//points[card];
-              let cardValue2 = 1//points[card];
-              console.log(indexKey1);
-              // console.log("hi");
-              // console.log(card1);
-              // console.log(cardValue1);
-              $('.playercards:nth-child(1)').text(card1);
-              $('.playercards:nth-child(2)').text(card2);
-
-
-              let dealerCard1 = deck1.deal();
-              let dealerCard2 = deck1.deal();
-              let dealerValue1 = 1//points[card];
-              let dealerValue2 = 1//points[card];
-
-              $('.dealerhand:nth-child(1)').text(dealerCard1);
-              $('.dealerhand:nth-child(2)').text(dealerCard2);
-
-              playerValue = cardValue1 + cardValue2
-              dealerValue = dealerValue1 + dealerValue2
-            })
-              $('.hit').on('click', () => {
-                $('.playercards:nth-child(' + nextPlayerBox + ')').css('visibility', 'visible');
-                $('.playercards:nth-child(' + nextPlayerBox + ')').text(deck1.deal());
-                // let card = deck1.deal();
-                // console.log(card);
-                nextPlayerBox++;
-                console.log(p);
-              })
-              $('.stand').on('click', () => {
-                let nextDealerBox = 3
-                while (dealerValue < 17) { // If Dealer needs to draw another card
-                                          // Similar to player hit
-                }
-                $('.dealerhand:nth-child(3)').css('visibility', 'visible');
-                $('.dealerhand:nth-child(4)').css('visibility', 'visible');
-
-              })
-        });
-
+//   //------------------------------------------------------------------------------------
+//   // On click listener on the stand button
+//   //------------------------------------------------------------------------------------
+//   $(".stand").on("click", () => {
+//     let nextDealerBox = 3;
+//     while (dealerValue < 17) {}
+//     $(".dealerhand:nth-child(3)").css("visibility", "visible");
+//     $(".dealerhand:nth-child(4)").css("visibility", "visible");
+//   });
+// });
 
 
 
