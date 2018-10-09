@@ -118,6 +118,7 @@ class Deck {
         //------------------------------------------------------------------------------------
         const card = new Card(suit, value);
         this.deck.push(card);
+        console.log(card);
       }
     }
   }
@@ -164,65 +165,65 @@ const dealCardToPlayer = hand => {
   hand.push(deck1.deal());
 };
 
-$(() => {
-  //------------------------------------------------------------------------------------
-  // Game: Deal a card to add to dealerHand
-  //------------------------------------------------------------------------------------
-  for (let i = 0; i <= 2; i++) {
-    dealCardToPlayer(game.dealerHand);
-    dealCardToPlayer(game.playerHand);
-  }
-
-  //------------------------------------------------------------------------------------
-  // Assign points to each hand to determine total points
-  //------------------------------------------------------------------------------------
-  for (const card of game.dealerHand) {
-    dealerPoints += card.points;
-  }
-  console.log(game.dealerHand);
-  console.log(dealerPoints);
-
-  for (const card of game.playerHand) {
-    playerPoints += card.points;
-
-  }
-  console.log(game.playerHand);
-  console.log(playerPoints);
-
-
-
-  $(".deal").on("click", () => {
-      $('.playercards:nth-child(-n+2)').css('visibility', 'visible');
-      $('.playercards:nth-child(1)').text(game.playerHand[0].value + game.playerHand[0].suit);
-      $('.playercards:nth-child(2)').text(game.playerHand[1].value + game.playerHand[1].suit);
-    })
-
-  $(".hit").on("click", () => {
-      $(".playercards:nth-child(3)").css('visibility', 'visible');
-      $(".playercards:nth-child(3)").text(game.playerHand[2].value + game.playerHand[2].suit);
-
-      $('.digits').empty();
-      $('.digits').text(playerPoints);
-
-      // $('.digits').text(playerPoints);
-    });
-
-  $(".stand").on("click", () => {
-      $('.dealerhand:nth-child(-n+2)').css('visibility', 'visible');
-      $('.dealerhand:nth-child(1)').text(game.dealerHand[0].value + game.dealerHand[0].suit);
-      $('.dealerhand:nth-child(2)').text(game.dealerHand[1].value + game.dealerHand[1].suit);
-
-
-      // $('.dealerhand:nth-child(3)').css('visibility', 'visible');
-      // $('.dealerhand:nth-child(3)').text(game.dealerHand[2].value + game.dealerHand[2].suit);
-
-      end();
-  })
-
-  $(".reset").on("click", () => {
-      window.location.reload(true);
-  })
-});
+// $(() => {
+//   //------------------------------------------------------------------------------------
+//   // Game: Deal a card to add to dealerHand
+//   //------------------------------------------------------------------------------------
+//   for (let i = 0; i <= 2; i++) {
+//     dealCardToPlayer(game.dealerHand);
+//     dealCardToPlayer(game.playerHand);
+//   }
+//
+//   //------------------------------------------------------------------------------------
+//   // Assign points to each hand to determine total points
+//   //------------------------------------------------------------------------------------
+//   for (const card of game.dealerHand) {
+//     dealerPoints += card.points;
+//   }
+//   console.log(game.dealerHand);
+//   console.log(dealerPoints);
+//
+//   for (const card of game.playerHand) {
+//     playerPoints += card.points;
+//
+//   }
+//   console.log(game.playerHand);
+//   console.log(playerPoints);
+//
+//
+//
+//   $(".deal").on("click", () => {
+//       $('.playercards:nth-child(-n+2)').css('visibility', 'visible');
+//       $('.playercards:nth-child(1)').text(game.playerHand[0].value + game.playerHand[0].suit);
+//       $('.playercards:nth-child(2)').text(game.playerHand[1].value + game.playerHand[1].suit);
+//     })
+//
+//   $(".hit").on("click", () => {
+//       $(".playercards:nth-child(3)").css('visibility', 'visible');
+//       $(".playercards:nth-child(3)").text(game.playerHand[2].value + game.playerHand[2].suit);
+//
+//       $('.digits').empty();
+//       $('.digits').text(playerPoints);
+//
+//       // $('.digits').text(playerPoints);
+//     });
+//
+//   $(".stand").on("click", () => {
+//       $('.dealerhand:nth-child(-n+2)').css('visibility', 'visible');
+//       $('.dealerhand:nth-child(1)').text(game.dealerHand[0].value + game.dealerHand[0].suit);
+//       $('.dealerhand:nth-child(2)').text(game.dealerHand[1].value + game.dealerHand[1].suit);
+//
+//
+//       // $('.dealerhand:nth-child(3)').css('visibility', 'visible');
+//       // $('.dealerhand:nth-child(3)').text(game.dealerHand[2].value + game.dealerHand[2].suit);
+//
+//       end();
+//   })
+//
+//   $(".reset").on("click", () => {
+//       window.location.reload(true);
+//   })
+// });
 
 
 // check() {
