@@ -31,6 +31,25 @@ Dealer decides the same but must HIT if total value of cards is less than 17.
 In the case of a tie, that is considered to be a PUSH (Draw) and the next round begins.
 
 
+MAKING THE GAME
+
+My first two attempts were overcomplicated by my idea that I needed to try to implement
+
+as much as I can about classes, constructors, methods, etc.
+
+
+Object-oriented. 
+
+
+Think about the objects you might need first (cards, deck, player, dealer, suits, values, etc)
+
+and figure out how to manipulate and connect them together. 
+
+
+This led to me thinking about trying to go as simple as possible to make this game. 
+
+
+
 
 
 
