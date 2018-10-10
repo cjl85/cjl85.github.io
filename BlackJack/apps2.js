@@ -1,5 +1,5 @@
 // Define 2 arrays with the suits and values of the deck.
-// Define empty deckOfCards array.
+// Define empty deckOfCards array to store cards later.
 // Define suit and value.
 // Define an object with the points for face cards.
 
@@ -10,30 +10,41 @@ let suits = ["♦", "♣", "♥", "♠"],
     deckOfCards = [],
     suit,
     value,
-    points = { A: 11, J: 10, Q: 10, K:  10 };
+    points = { A: 11, J: 10, Q: 10, K: 10 },
+    playerHand = [],
+    dealerHand = [];
 
 ///////////////////////////////////////////////////////////////
 
-// Shorthand for-loop to iterate over each array.
+// Shorthand for-loop to iterate over each array
+// to get the suit/value for each card.
 
+// Push each assembled card into the deckOfCards array
+// that displays the suit, value and corresponding points value of the cards.
 
-// Define a deckOfCards object that stores the suit, value, and points
-// after each card is assembled.
+// Lines 30 - 35 make 52 assembled cards that are now inside of a deck.
 
+// Lines 37 - 39 is a function that returns one card(object)
+// that is going to be randomly chosen.
 
 for (const suit of suits) {
   for (const value of values) {
 
     deckOfCards.push({suit, value, points: points[value] || value});
-
-
-    // const card = deckOfCards.entries(suit, value, points)
-    //   console.log(card);
   }
 }
-const getCard = () => {
+
+const dealRandomCard = () => {
   return deckOfCards.splice(Math.floor(Math.random() * deckOfCards.length), 1)[0];
 }
 
-console.log(getCard());
-// console.log(deckOfCards);
+// console.log(dealRandomCard());
+
+//////////////////////////////////////////////////////////////
+
+for (let i = 0; i < 2; i++) {
+    playerHand.push(dealRandomCard());
+    dealerHand.push(dealRandomCard());
+    console.log(playerHand);
+    // console.log(dealerHand);
+}
