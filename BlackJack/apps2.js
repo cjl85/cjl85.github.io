@@ -22,9 +22,9 @@ let suits = ["♦", "♣", "♥", "♠"],
 // Push each assembled card into the deckOfCards array
 // that displays the suit, value and corresponding points value of the cards.
 
-// Lines 30 - 35 make 52 assembled cards that are now inside of a deck.
+// Lines 32 - 37 make 52 assembled cards that are now inside of a deck.
 
-// Lines 37 - 39 is a function that returns one card(object)
+// Lines 39 - 41 is a function that returns one card(object)
 // that is going to be randomly chosen.
 
 for (const suit of suits) {
@@ -45,6 +45,6 @@ const dealRandomCard = () => {
 for (let i = 0; i < 2; i++) {
     playerHand.push(dealRandomCard());
     dealerHand.push(dealRandomCard());
-    console.log(playerHand);
-    // console.log(dealerHand);
 }
+console.log(playerHand);
+console.log(dealerHand);
