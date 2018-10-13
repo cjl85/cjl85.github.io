@@ -41,10 +41,70 @@ const dealRandomCard = () => {
 // console.log(dealRandomCard());
 
 //////////////////////////////////////////////////////////////
-
+//                DEAL 2 CARDS TO EACH SIDE                 //
+//////////////////////////////////////////////////////////////
 for (let i = 0; i < 2; i++) {
     playerHand.push(dealRandomCard());
     dealerHand.push(dealRandomCard());
 }
+// console.log(playerHand);
+// console.log(dealerHand);
+
+//////////////////////////////////////////////////////////////
+//           ASSIGN POINTS TO EACH SIDE TO BE ADDED         //
+//////////////////////////////////////////////////////////////
+
+let playerPoints = 0,
+    dealerPoints = 0;
+
+  for (let { points } of playerHand) {
+        playerPoints += points;
+  }
+
+  for (let { points } of dealerHand) {
+        dealerPoints += points
+  }
+console.log(playerPoints);
+console.log(dealerPoints);
+
+/////////////////////////////////////////////////////////////
+//       ADD EXTRA CARD TO DEALER IF LESS THAN 17          //
+/////////////////////////////////////////////////////////////
+
+let totalPoints = 0;
+
+if (dealerPoints < 17) {
+    dealerHand.push(dealRandomCard());
+
+    totalPoints += points
+
+} else {
+
+  return
+
+}
+
+/////////////////////////////////////////////////////////////
+//             ADD TOTAL POINTS FOR DEALER                 //
+/////////////////////////////////////////////////////////////
+
+// for (let card of dealerHand) {
+
+  totalPoints += points;
+
+  totalPoints  = dealerHand.reduce((total , card) => total + card.points, 0);
+// }
+
+// return totalDealerPoints
 console.log(playerHand);
 console.log(dealerHand);
+console.log(totalPoints);
+
+
+if(totalPoints > 21 || playerPoints > 21){
+  console.log('LOSE!');
+} else if (playerPoints > totalPoints && playerPoints <= 21) {
+  console.log('Player Wins!');
+} else if (playerPoints === totalPoints) {
+  console.log('Push!');
+}
