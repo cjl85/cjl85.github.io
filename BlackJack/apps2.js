@@ -3,7 +3,7 @@
 // Define suit and value.
 // Define an object with the points for face cards.
 
-// For now, Aces will only take in an point value of 11.
+// For now, Aces will only take in a point value of 11.
 
 let suits = ["♦", "♣", "♥", "♠"],
     values = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"],
@@ -14,7 +14,9 @@ let suits = ["♦", "♣", "♥", "♠"],
     playerHand = [],
     dealerHand = [];
 
-///////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+//  MAKE A DECK THAT HAS 52 CARDS W/ SUITS/VALUES/POINTS //
+///////////////////////////////////////////////////////////
 
 // Shorthand for-loop to iterate over each array
 // to get the suit/value for each card.
@@ -68,20 +70,15 @@ console.log(playerPoints);
 console.log(dealerPoints);
 
 /////////////////////////////////////////////////////////////
-//       ADD EXTRA CARD TO DEALER IF LESS THAN 17          //
+//         ADD EXTRA CARD TO DEALER IF LESS THAN 17        //
 /////////////////////////////////////////////////////////////
 
 let totalPoints = 0;
 
-if (dealerPoints < 17) {
+while (dealerPoints < 17) {
     dealerHand.push(dealRandomCard());
-
-    totalPoints += points
-
-} else {
-
-  return
-
+    dealerPoints += points
+    totalPoints = dealerPoints
 }
 
 /////////////////////////////////////////////////////////////
@@ -92,19 +89,81 @@ if (dealerPoints < 17) {
 
   totalPoints += points;
 
-  totalPoints  = dealerHand.reduce((total , card) => total + card.points, 0);
+  totalPoints = dealerHand.reduce((total , card) => total + card.points, 0);
 // }
 
-// return totalDealerPoints
 console.log(playerHand);
 console.log(dealerHand);
 console.log(totalPoints);
 
 
-if(totalPoints > 21 || playerPoints > 21){
-  console.log('LOSE!');
-} else if (playerPoints > totalPoints && playerPoints <= 21) {
-  console.log('Player Wins!');
-} else if (playerPoints === totalPoints) {
-  console.log('Push!');
-}
+// let name = "Player";
+//
+// if(totalPoints > 21 || playerPoints > 21){
+//   console.log(`${name} LOST!`);
+// } else if (playerPoints > totalPoints && playerPoints <= 21) {
+//   console.log('Player Wins!');
+// } else if (playerPoints === totalPoints) {
+//   console.log('Push!');
+// }
+
+// const playerHand = document.getElementById('gamebox'),
+
+// const playerChild = document.createElement('playerhand')
+//
+// playerChild.innerHTML = 'playerHand';
+let $playerHand = playerHand;
+let $dealerHand = dealerHand;
+
+$(() => {
+  $('.hit').hide()
+  $('.stand').hide()
+  $('.reset').hide()
+
+  $('.deal').on('click', () => {
+
+      const $firstCard   = '<div class = playerhand > </div>';
+      const $secondCard  = '<div class = playerhand > </div>';
+
+      $('.gamebox').append($firstCard)
+      $('.gamebox').append($secondCard)
+      $('.deal').hide()
+      $('.hit').toggle()
+      $('.stand').toggle()
+      $('.reset').toggle()
+
+    })
+
+  $('.hit').on('click', () => {
+
+      const $nextCard = '<div class = playerhand > </div>';
+
+      $('.gamebox').append($nextCard)
+
+    })
+
+
+  $('.stand').on('click', () => {
+
+     const $dealerCard     = '<div class = dealerhand > </div>';
+     const $dealerNextCard = '<div class = dealerhand > </div>';
+
+     $('.dealergamebox').append($dealerCard);
+     $('.dealergamebox').append($dealerNextCard);
+     $dealerCard.append($totalPoints)
+
+  })
+
+  $('.reset').on('click', () => {
+
+    location.reload();
+  })
+});
+
+
+// let cardDivs = document.getElementsByClassName("playerhand");
+// let text = document.createTextNode("This just got added");
+// cardDivs.appendChild(text);
+//
+// console.log(text);
+// console.log(cardDivs);
