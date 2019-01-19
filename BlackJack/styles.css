@@ -11,13 +11,11 @@ body {
 
 h1 {
   text-align: center;
-  font-family: 'Lobster', Georgia, Times, serif;
+  font-family: 'Special Elite', cursive;
   font-size: 5em;
   color: #e6e6e6;
   text-shadow: -5px 0 black, 0 5px black, 5px 0 black, 0 -5px black;
 }
-
-
 
 .deal  {
   background-color: blue;
@@ -42,6 +40,7 @@ h1 {
   font-size: 20px;
   font-weight: bold;
   margin-left: 600px;
+  margin-top: 10px;
 }
 
 .reset {
@@ -54,6 +53,7 @@ h1 {
   font-size: 20px;
   font-weight: bold;
   margin-left: 11px;
+  margin-top: 10px;
 }
 
 .stand {
@@ -66,6 +66,7 @@ h1 {
   font-size: 20px;
   font-weight: bold;
   margin-left: 10px;
+  margin-top: 10px;
 }
 
 .gamebox {
@@ -76,6 +77,10 @@ h1 {
   height: 200px;
   width: 50%;
   margin: 0 auto;
+}
+
+.dealercontainer {
+  margin-top: -30px;
 }
 
 .dealerhand{
@@ -98,14 +103,15 @@ h1 {
 }
 
 .total {
-  border: 1px solid black;
+  border: 1px solid white;
   border-radius: 4px;
   display: inline-block;
   color: white;
   padding: 5px 5px;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: bold;
-  margin-left: 630px;
+  margin-left: 580px;
+  margin-top: 10px;
 }
 
 .dealergamebox {

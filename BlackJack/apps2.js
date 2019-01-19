@@ -85,40 +85,40 @@ while (dealerPoints < 17) {
 //             ADD TOTAL POINTS FOR DEALER                 //
 /////////////////////////////////////////////////////////////
 
-// for (let card of dealerHand) {
 
-  totalPoints += points;
+totalPoints += points;
 
-  totalPoints = dealerHand.reduce((total , card) => total + card.points, 0);
-// }
+totalPoints = dealerHand.reduce((total , card) => total + card.points, 0);
+
 
 console.log(playerHand);
 console.log(dealerHand);
 console.log(totalPoints);
 
 
-// let name = "Player";
-//
-// if(totalPoints > 21 || playerPoints > 21){
-//   console.log(`${name} LOST!`);
-// } else if (playerPoints > totalPoints && playerPoints <= 21) {
-//   console.log('Player Wins!');
-// } else if (playerPoints === totalPoints) {
-//   console.log('Push!');
-// }
+let name = "Player";
 
-// const playerHand = document.getElementById('gamebox'),
+if(totalPoints > 21 || playerPoints > 21){
+  console.log(`${name} LOST!`);
+} else if (playerPoints > totalPoints && playerPoints <= 21) {
+  console.log('Player Wins!');
+} else if (playerPoints === totalPoints) {
+  console.log('Push!');
+}
 
-// const playerChild = document.createElement('playerhand')
-//
-// playerChild.innerHTML = 'playerHand';
-let $playerHand = playerHand;
-let $dealerHand = dealerHand;
+
 
 $(() => {
+
+  let $playerPoints = playerPoints;
+  let $totalPoints  = totalPoints;
+  let $playerHand   = playerHand;
+  let $dealerHand   = dealerHand;
+
   $('.hit').hide()
   $('.stand').hide()
   $('.reset').hide()
+
 
   $('.deal').on('click', () => {
 
@@ -138,25 +138,26 @@ $(() => {
 
       const $nextCard = '<div class = playerhand > </div>';
 
-      $('.gamebox').append($nextCard)
+      $('.gamebox').append($nextCard);
 
     })
 
 
   $('.stand').on('click', () => {
 
-     const $dealerCard     = '<div class = dealerhand > </div>';
-     const $dealerNextCard = '<div class = dealerhand > </div>';
+    const $dealerCard  = '<div class = dealerhand > </div>';
 
-     $('.dealergamebox').append($dealerCard);
-     $('.dealergamebox').append($dealerNextCard);
-     $dealerCard.append($totalPoints)
+    $('.dealergamebox').each(function() {
+      $(this).append($dealerCard)
+      $(this).append($dealerCard)
+    });
 
   })
 
+
   $('.reset').on('click', () => {
 
-    location.reload();
+    window.location.reload(false);
   })
 });
 
