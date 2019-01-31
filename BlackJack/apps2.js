@@ -145,11 +145,11 @@ $(() => {
 
   $('.stand').on('click', () => {
 
-    const $dealerCard  = '<div class = dealerhand > </div>';
+      const $dealerCard  = '<div class = dealerhand > </div>';
 
-    $('.dealergamebox').each(function() {
-      $(this).append($dealerCard)
-      $(this).append($dealerCard)
+      $('.dealergamebox').each(function() {
+        $(this).append($dealerCard)
+        $(this).append($dealerCard)
     });
 
   })
